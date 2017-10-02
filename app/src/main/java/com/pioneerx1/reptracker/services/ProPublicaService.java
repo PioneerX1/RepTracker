@@ -4,8 +4,14 @@ package com.pioneerx1.reptracker.services;
 import android.util.Log;
 
 import com.pioneerx1.reptracker.Constants;
+import com.pioneerx1.reptracker.models.Rep;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -43,8 +49,50 @@ public class ProPublicaService {
         Call call = client.newCall(request);
         call.enqueue(callback);
 
-        Log.d("--- API REQUEST URL ---", url);
+    }
 
+    public ArrayList<Rep> processResults(Response response) {
+        ArrayList<Rep> reps = new ArrayList<>();
+
+        try {
+            String jsonData = response.body().string();
+            if (response.isSuccessful()) {
+                JSONObject propublicaJSON = new JSONObject(jsonData);
+
+                JSONArray resultsJSON = propublicaJSON.getJSONArray("results");
+                String chamber = resultsJSON.getJSONObject(0).getString("chamber");
+                String title;
+                if (chamber.equals("Senate")) {
+                    title = "Senator";
+                } else {
+                    title = "Representative";
+                }
+
+                JSONArray membersJSON = resultsJSON.getJSONObject(0).getJSONArray("members");
+                Log.d("MEMBERS ARRAY", membersJSON.toString());
+
+                for (int i = 0; i < membersJSON.length(); i++) {
+                    JSONObject memberJSON = membersJSON.getJSONObject(i);
+                    String firstName = memberJSON.getString("first_name");
+                    String lastName = memberJSON.getString("last_name");
+                    String name = firstName + " " + lastName;
+                    String memberId = memberJSON.getString("id");
+                    String party = memberJSON.getString("party");
+                    String state = memberJSON.getString("state");
+
+                    Rep newRep = new Rep(name, title, memberId, state, party);
+                    reps.add(newRep);
+
+                    // Log.d(title, name);
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return reps;
     }
 
 }

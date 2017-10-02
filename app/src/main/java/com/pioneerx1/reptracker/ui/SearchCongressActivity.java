@@ -28,7 +28,7 @@ public class SearchCongressActivity extends AppCompatActivity {
     @Bind(R.id.congressRepsRecyclerView) RecyclerView mCongressRepsRecyclerView;
 
     // hard-code this for now:
-    String congressChamber = "senate";
+    String congressChamber = "house";
 
 
     @Override
@@ -45,18 +45,37 @@ public class SearchCongressActivity extends AppCompatActivity {
         propublicaService.findCongressMembers(congressChamber, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                //e.printStackTrace();
-                Log.d("FAILURE ", " INVOKED---");
+                e.printStackTrace();
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    Log.d("API RESPONSE---", jsonData);
-                } catch (IOException e) {
-                    //e.printStackTrace();
-                    Log.d("CANNOT READ ", "JSON RESPONSE");
+                mAllReps = propublicaService.processResults(response);
+                for(int i = 0; i < mAllReps.size(); i++) {
+                    Log.d("----", "------------");
+                    Log.d("NAME: ", mAllReps.get(i).getName());
+                    Log.d("TITLE: ", mAllReps.get(i).getTitle());
+                    Log.d("STATE: ", mAllReps.get(i).getState());
+                    Log.d("PARTY: ", mAllReps.get(i).getParty());
+                    Log.d("MEMBER ID: ", mAllReps.get(i).getMemberId());
+                    Log.d("COUNT: ", i + "");
                 }
+//                int count = mAllReps.size();
+//                Log.d("COUNT: ", count + "");
+
+
+
+//                try {
+//                    String jsonData = response.body().string();
+//                    if (response.isSuccessful()) {
+//                        //Log.d("API RESPONSE---", jsonData);
+//                        mAllReps = propublicaService.processResults(response);
+//                    }
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+
+
             }
         });
     }
