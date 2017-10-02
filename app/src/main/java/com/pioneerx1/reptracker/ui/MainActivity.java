@@ -31,10 +31,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v == mSearchHouseButton) {
             Intent intent = new Intent(this, SearchCongressActivity.class);
+            intent.putExtra("chamber", "house");
             startActivity(intent);
         }
         if (v == mSearchSenateButton) {
             Intent intent = new Intent(this, SearchCongressActivity.class);
+            intent.putExtra("chamber", "senate");
             startActivity(intent);
         }
         if (v == mSavedRepsListButton) {

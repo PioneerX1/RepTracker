@@ -1,5 +1,6 @@
 package com.pioneerx1.reptracker.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,13 +29,16 @@ public class SearchCongressActivity extends AppCompatActivity {
     @Bind(R.id.congressRepsRecyclerView) RecyclerView mCongressRepsRecyclerView;
 
     // hard-code this for now:
-    String congressChamber = "senate";
+    String congressChamber = "not specified";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_congress);
+
+        Intent intent = getIntent();
+        congressChamber = intent.getStringExtra("chamber");
 
         Log.d("You have arrived at ", " SEARCH CONGRESS ACTIVITY");
         getCongressMembers(congressChamber);
