@@ -9,14 +9,16 @@ public class Rep {
     String title;
     String memberId;
     String state;
+    String party;
 
     public Rep() { }
 
-    public Rep(String name, String title, String memberId, String state) {
+    public Rep(String name, String title, String memberId, String state, String party) {
         this.name = name;
         this.title = title;
         this.memberId = memberId;
         this.state = state;
+        this.party = party;
     }
 
     public String getName() {
@@ -33,6 +35,10 @@ public class Rep {
 
     public String getState() {
         return state;
+    }
+
+    public String getParty() {
+        return party;
     }
 
 }

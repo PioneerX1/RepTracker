@@ -6,6 +6,8 @@ import android.util.Log;
 import android.support.v7.widget.RecyclerView;
 
 import com.pioneerx1.reptracker.R;
+import com.pioneerx1.reptracker.adapters.RepListAdapter;
+import com.pioneerx1.reptracker.models.Rep;
 
 import java.util.ArrayList;
 
