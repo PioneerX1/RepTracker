@@ -28,7 +28,7 @@ public class SearchCongressActivity extends AppCompatActivity {
     @Bind(R.id.congressRepsRecyclerView) RecyclerView mCongressRepsRecyclerView;
 
     // hard-code this for now:
-    String congressChamber = "house";
+    String congressChamber = "senate";
 
 
     @Override
@@ -50,15 +50,17 @@ public class SearchCongressActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 mAllReps = propublicaService.processResults(response);
-                for(int i = 0; i < mAllReps.size(); i++) {
-                    Log.d("----", "------------");
-                    Log.d("NAME: ", mAllReps.get(i).getName());
-                    Log.d("TITLE: ", mAllReps.get(i).getTitle());
-                    Log.d("STATE: ", mAllReps.get(i).getState());
-                    Log.d("PARTY: ", mAllReps.get(i).getParty());
-                    Log.d("MEMBER ID: ", mAllReps.get(i).getMemberId());
-                    Log.d("COUNT: ", i + "");
-                }
+                String count = mAllReps.size() + "";
+                Log.d("COUNT: ", count);
+//                for(int i = 0; i < mAllReps.size(); i++) {
+//                    Log.d("----", "------------");
+//                    Log.d("NAME: ", mAllReps.get(i).getName());
+//                    Log.d("TITLE: ", mAllReps.get(i).getTitle());
+//                    Log.d("STATE: ", mAllReps.get(i).getState());
+//                    Log.d("PARTY: ", mAllReps.get(i).getParty());
+//                    Log.d("MEMBER ID: ", mAllReps.get(i).getMemberId());
+//                    Log.d("COUNT: ", i + "");
+//                }
 //                int count = mAllReps.size();
 //                Log.d("COUNT: ", count + "");
 
