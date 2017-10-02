@@ -6,6 +6,13 @@ Mon, 10/2
 - Write out a Fragment (for Main Activity) that returns a list of Congress Members to display
   (can retrieve all in either Senate or House, or retrieve by State in Senate or House)
 
+INITIAL WORKFLOW (prior to Saved Rep List):
+- Main (search by Senate or House)
+- House Search (List All Reps and Button to Search by State)
+- House State Search
+- Senate Search (List All Reps and Button to Search by State)
+- Senate State Search
+
 
 - Potential APIs:
  - ProPublica - https://www.propublica.org/datastore/api
