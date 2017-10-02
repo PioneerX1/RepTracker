@@ -17,7 +17,7 @@ import okhttp3.Response;
 
 public class ProPublicaService {
 
-    public static void findCongressMembers(String govBranch, Callback callback) {
+    public static void findCongressMembers(String congressChamber, Callback callback) {
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
@@ -31,7 +31,7 @@ public class ProPublicaService {
                 .build();
 
         HttpUrl.Builder urlBuilder;
-        if (govBranch.equals("senate")) {
+        if (congressChamber.equals("senate")) {
             urlBuilder = HttpUrl.parse(Constants.PROPUBLICA_BASE_URL_SENATE).newBuilder();
         } else {
             urlBuilder = HttpUrl.parse(Constants.PROPUBLICA_BASE_URL_HOUSE).newBuilder();

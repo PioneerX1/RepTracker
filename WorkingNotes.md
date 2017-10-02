@@ -67,4 +67,4 @@ RepTracker
     Models:
     - Vote
     - Bill ?
-    - Rep
+    - Rep (name, congressId, state, chamber)
