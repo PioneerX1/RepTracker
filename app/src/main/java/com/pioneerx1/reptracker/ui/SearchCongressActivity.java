@@ -8,6 +8,8 @@ import com.pioneerx1.reptracker.R;
 
 public class SearchCongressActivity extends AppCompatActivity {
 
+    // get API call from this activity working, then REFACTOR this into a FRAGMENT!!!
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
