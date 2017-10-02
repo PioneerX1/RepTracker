@@ -6,6 +6,11 @@ Mon, 10/2
 - Write out a Fragment (for Main Activity) that returns a list of Congress Members to display
   (can retrieve all in either Senate or House, or retrieve by State in Senate or House)
 
+POSSIBLE INITIAL WORKFLOW:
+- Main (search Congress or View Saved Reps List - 2 buttons)
+- SearchCongressActivity spits up a huge ArrayList after 2 API calls for House and Senate (same ArrayList though)
+- A filter field allows user to narrow down list by name or state
+
 INITIAL WORKFLOW (prior to Saved Rep List):
 - Main (search by Senate or House)
 - House Search (List All Reps and Button to Search by State)
