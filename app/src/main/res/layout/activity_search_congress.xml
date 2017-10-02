@@ -6,4 +6,22 @@
     android:layout_height="match_parent"
     tools:context="com.pioneerx1.reptracker.ui.SearchCongressActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleTextViewRepList"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:text="List of Reps"
+        android:layout_marginTop="10dp"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/congressRepsRecyclerView"
+        android:layout_below="@+id/titleTextViewRepList"
+        android:layout_marginTop="10dp"
+        />
+
 </android.support.constraint.ConstraintLayout>
