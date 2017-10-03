@@ -6,6 +6,18 @@ NEXT STEPS:
 
 - RepDetailActivity & Fragment (will need new API call from all the votes by rep)
 
+- API info on votes needed:
+ - member_id (to call the API)
+ - results -> votes -> question (concat this with "description" so it is something "on passage of make america secure appropriations act")
+ - results -> votes -> description
+ - results -> votes -> position (yes, no, absent?)
+ - results -> votes -> date (when they voted)
+ - results -> votes -> bill -> bill_id (so people can google this if needed for more research)
+
+
+** If possible might be good to do 2 API calls for RepDetail
+1. Get Specific Member bio (stats like contact info, # bills sponsored, # bills co-sponsored, title, party, % votes with party, # missed votes)
+2. Get Voting History on Specific bills
 
 ---
 Mon, 10/2
