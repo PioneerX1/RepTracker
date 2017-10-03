@@ -1,8 +1,19 @@
+Wed, 10/4
+
+NEXT STEPS:
+
+- Adjust Rep model to hold phone, email, website, # missed votes, next election, missed votes %, votes with party %
+  **This can actually come from the API list Call, Yeah!!
+
+- Create API call to populate RepDetail portion for voting stats
+
+
+---
 Tues, 10/3
 
 NEXT STEPS:
 - Link up Rep ArrayList from API call to RecyclerView Adapter to display on screen
-- Break out a RepListFragment from SearchCongressActivity
+- Break out a RepListFragment from SearchCongressActivity  XXX
 
 - RepDetailActivity & Fragment (will need new API call from all the votes by rep)
 
