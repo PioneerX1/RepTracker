@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.SearchCongressActivity" />
-        <activity android:name=".ui.SavedRepsListActivity"></activity>
+        <activity android:name=".ui.SavedRepsListActivity" />
+        <activity android:name=".ui.RepDetailActivity"></activity>
     </application>
 
 </manifest>
