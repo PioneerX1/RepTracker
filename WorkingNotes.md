@@ -2,7 +2,7 @@ Wed, 10/4
 
 NEXT STEPS:
 
-- Adjust Rep model to hold phone, email, website, # missed votes, next election, missed votes %, votes with party %
+- Adjust Rep model to hold phone, email, website, # missed votes, next election, missed votes %, votes with party %, total votes (no bills sponsored stats tho)
   **This can actually come from the API list Call, Yeah!!
 
 - Create API call to populate RepDetail portion for voting stats
