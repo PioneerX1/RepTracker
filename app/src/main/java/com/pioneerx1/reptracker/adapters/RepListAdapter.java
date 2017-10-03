@@ -2,6 +2,7 @@ package com.pioneerx1.reptracker.adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 
 import com.pioneerx1.reptracker.R;
 import com.pioneerx1.reptracker.models.Rep;
+import com.pioneerx1.reptracker.ui.RepDetailActivity;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -43,7 +47,7 @@ public class RepListAdapter extends RecyclerView.Adapter<RepListAdapter.RepViewH
         return mReps.size();
     }
 
-    public class RepViewHolder extends RecyclerView.ViewHolder {
+    public class RepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.repNameTextView) TextView mRepNameTextView;
         @Bind(R.id.repTitleTextView) TextView mRepTitleTextView;
         @Bind(R.id.repStateTextView) TextView mRepStateTextView;
@@ -54,6 +58,17 @@ public class RepListAdapter extends RecyclerView.Adapter<RepListAdapter.RepViewH
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, RepDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("reps", Parcels.wrap(mReps));
+            mContext.startActivity(intent);
         }
 
         public void bindRep(Rep rep) {
