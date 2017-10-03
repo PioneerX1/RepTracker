@@ -3,6 +3,7 @@ package com.pioneerx1.reptracker.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.support.v7.widget.RecyclerView;
 
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -36,6 +38,7 @@ public class SearchCongressActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_congress);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         congressChamber = intent.getStringExtra("chamber");
@@ -56,32 +59,21 @@ public class SearchCongressActivity extends AppCompatActivity {
                 mAllReps = propublicaService.processResults(response);
                 String count = mAllReps.size() + "";
                 Log.d("COUNT: ", count);
-//                for(int i = 0; i < mAllReps.size(); i++) {
-//                    Log.d("----", "------------");
-//                    Log.d("NAME: ", mAllReps.get(i).getName());
-//                    Log.d("TITLE: ", mAllReps.get(i).getTitle());
-//                    Log.d("STATE: ", mAllReps.get(i).getState());
-//                    Log.d("PARTY: ", mAllReps.get(i).getParty());
-//                    Log.d("MEMBER ID: ", mAllReps.get(i).getMemberId());
-//                    Log.d("COUNT: ", i + "");
-//                }
-//                int count = mAllReps.size();
-//                Log.d("COUNT: ", count + "");
 
+                SearchCongressActivity.this.runOnUiThread(new Runnable() {
+                   @Override
+                    public void run() {
 
-
-//                try {
-//                    String jsonData = response.body().string();
-//                    if (response.isSuccessful()) {
-//                        //Log.d("API RESPONSE---", jsonData);
-//                        mAllReps = propublicaService.processResults(response);
-//                    }
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-
-
+                       mAdapter = new RepListAdapter(getApplicationContext(),mAllReps);
+                       Log.d("---mAdapter: ", mAdapter.toString());
+                       Log.d("---mAllReps: ", mAllReps.toString());
+                       Log.d("---RecyclerView: ", mCongressRepsRecyclerView.toString());
+                       mCongressRepsRecyclerView.setAdapter(mAdapter);
+                       RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchCongressActivity.this);
+                       mCongressRepsRecyclerView.setLayoutManager(layoutManager);
+                       mCongressRepsRecyclerView.setHasFixedSize(true);
+                   }
+                });
             }
         });
     }
