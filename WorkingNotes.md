@@ -1,3 +1,13 @@
+Tues, 10/3
+
+NEXT STEPS:
+- Link up Rep ArrayList from API call to RecyclerView Adapter to display on screen
+- Break out a RepListFragment from SearchCongressActivity
+
+- RepDetailActivity & Fragment (will need new API call from all the votes by rep)
+
+
+---
 Mon, 10/2
 
 - Setup project
