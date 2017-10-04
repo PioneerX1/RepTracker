@@ -80,6 +80,15 @@ public class ProPublicaService {
                     String party = memberJSON.getString("party");
                     String state = memberJSON.getString("state");
 
+                    // additional info
+                    String phone = memberJSON.getString("phone");
+                    String website = memberJSON.getString("url");
+                    String missedVotes = memberJSON.getString("missed_votes_pct");
+                    String votesWithParty = memberJSON.getString("votes_with_party_pct");
+                    String twitterHandle = memberJSON.getString("twitter_account");
+                    String facebookAccount = memberJSON.getString("facebook_account");
+                    String nextElection = memberJSON.getString("next_election");
+
                     Rep newRep = new Rep(name, title, memberId, state, party);
                     reps.add(newRep);
 
