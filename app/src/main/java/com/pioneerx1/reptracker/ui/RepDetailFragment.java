@@ -76,7 +76,7 @@ public class RepDetailFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         mRepNameTextView.setText("Name: " + mRep.getName());
-        // mRepMemberIdTextView.setText(mRep.getMemberId());
+        mRepMemberIdTextView.setText(mRep.getMemberId());
         mRepTitleTextView.setText("Title: " + mRep.getTitle());
         mRepPartyTextView.setText("Party: " + mRep.getParty());
         mRepStateTextView.setText("State: " + mRep.getState());

@@ -51,6 +51,10 @@ public class VoteListAdapter extends RecyclerView.Adapter<VoteListAdapter.VoteVi
     public class VoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // need a bunch of @Bind statements here based on whats in vote_list_item
+        @Bind(R.id.voteQuestionTextView) TextView mVoteQuestion;
+        @Bind(R.id.voteDescriptionTextView) TextView mVoteDescription;
+        @Bind(R.id.votePositionTextView) TextView mVotePosition;
+        @Bind(R.id.voteDateAndIdTextView) TextView mVoteDateAndId;
 
         private Context mContext;
 
@@ -71,7 +75,10 @@ public class VoteListAdapter extends RecyclerView.Adapter<VoteListAdapter.VoteVi
 
         public void bindVote(Vote vote) {
 
-            // need a bunch of set texts based on variables that were binded above
+            mVoteQuestion.setText(vote.getQuestion());
+            mVoteDescription.setText(vote.getDescription());
+            mVotePosition.setText(vote.getPosition());
+            mVoteDateAndId.setText(vote.getVoteDate() + " / " + vote.getBillId() + " / " + vote.getMemberId());
 
         }
     }
