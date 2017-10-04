@@ -72,7 +72,13 @@ public class RepDetailFragment extends Fragment {
         mRepVotesWithPartyTextView.setText("Percent of Time Votes with Party: " + mRep.getVotesWithParty() + "%");
         mRepNextElectionTextView.setText("Next Election Year: " + mRep.getNextElection());
 
+        getVotes(mRep.getMemberId());
+
         return view;
+    }
+
+    private void getVotes(String memberId) {
+
     }
 
 }

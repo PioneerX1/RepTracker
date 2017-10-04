@@ -23,6 +23,7 @@ import okhttp3.Response;
 
 public class ProPublicaService {
 
+    // pull list Congress Members from either Senate or House
     public static void findCongressMembers(String congressChamber, Callback callback) {
 
         OkHttpClient client = new OkHttpClient.Builder()
@@ -51,6 +52,36 @@ public class ProPublicaService {
 
     }
 
+    // pull voting record for individual Congress Member
+    public static void findVotes(String memberId, Callback callback) {
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request.Builder ongoing = chain.request().newBuilder();
+                        ongoing.addHeader(Constants.PROPUBLICA_API_HEADER_PARAMETER, Constants.PROPUBLICA_API_KEY);
+                        return chain.proceed(ongoing.build());
+                    }
+                })
+                .build();
+
+        HttpUrl.Builder urlBuilder;
+        urlBuilder = HttpUrl.parse(Constants.PROPUBLICA_BASE_URL_VOTES).newBuilder();
+
+        String url = urlBuilder.build().toString();
+        url = url.concat(memberId).concat(Constants.PROPUBLICA_BASE_URL_VOTES_ENDING);
+
+        Log.d("VOTES URL: ", url);
+
+        Request request = new Request.Builder().url(url).build();
+
+        Call call = client.newCall(request);
+        call.enqueue(callback);
+    }
+
+
+    // process Results of List of Congress Members
     public ArrayList<Rep> processResults(Response response) {
         ArrayList<Rep> reps = new ArrayList<>();
 
