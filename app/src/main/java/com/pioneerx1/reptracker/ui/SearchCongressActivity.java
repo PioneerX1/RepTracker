@@ -43,7 +43,6 @@ public class SearchCongressActivity extends AppCompatActivity {
         Intent intent = getIntent();
         congressChamber = intent.getStringExtra("chamber");
 
-        Log.d("You have arrived at ", " SEARCH CONGRESS ACTIVITY");
         getCongressMembers(congressChamber);
     }
 
@@ -65,9 +64,6 @@ public class SearchCongressActivity extends AppCompatActivity {
                     public void run() {
 
                        mAdapter = new RepListAdapter(getApplicationContext(),mAllReps);
-                       Log.d("---mAdapter: ", mAdapter.toString());
-                       Log.d("---mAllReps: ", mAllReps.toString());
-                       Log.d("---RecyclerView: ", mCongressRepsRecyclerView.toString());
                        mCongressRepsRecyclerView.setAdapter(mAdapter);
                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchCongressActivity.this);
                        mCongressRepsRecyclerView.setLayoutManager(layoutManager);

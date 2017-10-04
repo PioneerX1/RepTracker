@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="5dp"
     tools:context="com.pioneerx1.reptracker.ui.RepDetailFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -20,10 +21,72 @@
             />
 
         <TextView
+            android:id="@+id/repDetailTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text for Title" />
+
+        <TextView
             android:id="@+id/repDetailMemberIdTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Text for Member Id" />
+
+        <TextView
+            android:id="@+id/repDetailStateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text for State" />
+
+        <TextView
+            android:id="@+id/repDetailPartyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text for Party" />
+
+        <TextView
+            android:id="@+id/repDetailPhoneTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text for Phone" />
+
+        <TextView
+            android:id="@+id/repDetailWebsiteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text for Website" />
+
+        <TextView
+            android:id="@+id/repDetailTwitterTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text for Twitter" />
+
+        <TextView
+            android:id="@+id/repDetailFacebookTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text for Facebook" />
+
+        <TextView
+            android:id="@+id/repDetailMissedVotesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text for Missed Votes" />
+
+        <TextView
+            android:id="@+id/repDetailVotesWithPartyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text for Votes With Party" />
+
+        <TextView
+            android:id="@+id/repDetailNextElectionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text for Next Election" />
+
+
 
     </LinearLayout>
 

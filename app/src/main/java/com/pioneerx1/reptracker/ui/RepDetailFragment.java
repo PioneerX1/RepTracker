@@ -24,6 +24,16 @@ public class RepDetailFragment extends Fragment {
 
     @Bind(R.id.repDetailNameTextView) TextView mRepNameTextView;
     @Bind(R.id.repDetailMemberIdTextView) TextView mRepMemberIdTextView;
+    @Bind(R.id.repDetailTitleTextView) TextView mRepTitleTextView;
+    @Bind(R.id.repDetailPartyTextView) TextView mRepPartyTextView;
+    @Bind(R.id.repDetailStateTextView) TextView mRepStateTextView;
+    @Bind(R.id.repDetailPhoneTextView) TextView mRepPhoneTextView;
+    @Bind(R.id.repDetailWebsiteTextView) TextView mRepWebsiteTextView;
+    @Bind(R.id.repDetailTwitterTextView) TextView mRepTwitterTextView;
+    @Bind(R.id.repDetailFacebookTextView) TextView mRepFacebookTextView;
+    @Bind(R.id.repDetailMissedVotesTextView) TextView mRepMissedVotesTextView;
+    @Bind(R.id.repDetailVotesWithPartyTextView) TextView mRepVotesWithPartyTextView;
+    @Bind(R.id.repDetailNextElectionTextView) TextView mRepNextElectionTextView;
 
     private Rep mRep;
 
@@ -49,9 +59,18 @@ public class RepDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_rep_detail, container, false);
         ButterKnife.bind(this, view);
 
-        mRepNameTextView.setText(mRep.getName());
-        mRepMemberIdTextView.setText(mRep.getMemberId());
-        Log.d("Missed Votes: ", mRep.getMissedVotes());
+        mRepNameTextView.setText("Name: " + mRep.getName());
+        // mRepMemberIdTextView.setText(mRep.getMemberId());
+        mRepTitleTextView.setText("Title: " + mRep.getTitle());
+        mRepPartyTextView.setText("Party: " + mRep.getParty());
+        mRepStateTextView.setText("State: " + mRep.getState());
+        mRepPhoneTextView.setText("Phone: " + mRep.getPhone());
+        mRepWebsiteTextView.setText("Website: " + mRep.getWebsite());
+        mRepFacebookTextView.setText("Facebook Account: " + mRep.getFacebookAccount());
+        mRepTwitterTextView.setText("Twitter Handle: " + mRep.getTwitterHandle());
+        mRepMissedVotesTextView.setText("Percent of Missed Votes: " + mRep.getMissedVotes() + "%");
+        mRepVotesWithPartyTextView.setText("Percent of Time Votes with Party: " + mRep.getVotesWithParty() + "%");
+        mRepNextElectionTextView.setText("Next Election Year: " + mRep.getNextElection());
 
         return view;
     }
