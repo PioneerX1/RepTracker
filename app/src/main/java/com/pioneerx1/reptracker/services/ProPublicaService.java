@@ -82,8 +82,22 @@ public class ProPublicaService {
     }
 
     // process Results of Lisf of Votes
-    public ArrayList<Vote> processVoteResults(Response respone) {
+    public ArrayList<Vote> processVoteResults(Response response) {
+        ArrayList<Vote> votes = new ArrayList<>();
+        try {
+            String jsonData = response.body().string();
+            if (response.isSuccessful()) {
+                JSONObject propublicaJSON = new JSONObject(jsonData);
+                Log.d("RESPONSE: ", jsonData);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+
+        return votes;
     }
 
 
@@ -106,7 +120,7 @@ public class ProPublicaService {
                 }
 
                 JSONArray membersJSON = resultsJSON.getJSONObject(0).getJSONArray("members");
-                Log.d("MEMBERS ARRAY", membersJSON.toString());
+                //Log.d("MEMBERS ARRAY", membersJSON.toString());
 
                 for (int i = 0; i < membersJSON.length(); i++) {
                     JSONObject memberJSON = membersJSON.getJSONObject(i);

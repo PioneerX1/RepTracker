@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.pioneerx1.reptracker.R;
 import com.pioneerx1.reptracker.adapters.RepListAdapter;
+import com.pioneerx1.reptracker.adapters.VoteListAdapter;
 import com.pioneerx1.reptracker.models.Rep;
 import com.pioneerx1.reptracker.models.Vote;
 import com.pioneerx1.reptracker.services.ProPublicaService;
@@ -94,7 +95,7 @@ public class RepDetailFragment extends Fragment {
 
     private void getVotes(String memberId) {
         final ProPublicaService propublicaService = new ProPublicaService();
-        propublicaService.findCongressMembers(memberId, new Callback() {
+        propublicaService.findVotes(memberId, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -103,13 +104,13 @@ public class RepDetailFragment extends Fragment {
             public void onResponse(Call call, Response response) throws IOException {
                 mVotes = propublicaService.processVoteResults(response);
                 String count = mVotes.size() + "";
-                Log.d("COUNT: ", count);
+                Log.d("VOTES COUNT " + mRep.getName(), count);
 
-                RepDetailFragment.this.runOnUiThread(new Runnable() {
+                getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
-                        mVoteAdapter = new VoteListAdapter(getApplicationContext(), mVotes);
+                        mVoteAdapter = new VoteListAdapter(getActivity(), mVotes);
                         mVotesRecyclerView.setAdapter(mVoteAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());  // prev RepDetailFragment.this
                         mVotesRecyclerView.setLayoutManager(layoutManager);
