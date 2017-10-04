@@ -100,8 +100,15 @@ public class ProPublicaService {
                     String description = voteJSON.getString("description");
                     String voteDate = voteJSON.getString("date");
                     String position = voteJSON.getString("position");
-                    String billId = voteJSON.getJSONObject("nomination").getString("nomination_id");
-                    // Log.d("Bill ID: ", billId);
+
+                    // bill info is structures differently for Senate vs House (nominations vs bills)
+                    String chamber = voteJSON.getString("chamber");
+                    String billId;
+                    if (chamber.equals("Senate")) {
+                        billId = voteJSON.getJSONObject("nomination").getString("nomination_id");
+                    } else {
+                        billId = voteJSON.getJSONObject("bill").getString("bill_id");
+                    }
 
                     Vote newVote = new Vote(question, description, voteDate, position, billId, memberId);
                     votes.add(newVote);
