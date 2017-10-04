@@ -3,6 +3,8 @@ package com.pioneerx1.reptracker.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +12,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.pioneerx1.reptracker.R;
+import com.pioneerx1.reptracker.adapters.RepListAdapter;
 import com.pioneerx1.reptracker.models.Rep;
+import com.pioneerx1.reptracker.models.Vote;
+import com.pioneerx1.reptracker.services.ProPublicaService;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +46,11 @@ public class RepDetailFragment extends Fragment {
     @Bind(R.id.repDetailVotesWithPartyTextView) TextView mRepVotesWithPartyTextView;
     @Bind(R.id.repDetailNextElectionTextView) TextView mRepNextElectionTextView;
 
+    @Bind(R.id.votesRecyclerView) RecyclerView mVotesRecyclerView;
+
     private Rep mRep;
+    private ArrayList<Vote> mVotes = new ArrayList<>();
+    private VoteListAdapter mVoteAdapter;
 
 
     public static RepDetailFragment newInstance(Rep rep) {
@@ -78,7 +93,31 @@ public class RepDetailFragment extends Fragment {
     }
 
     private void getVotes(String memberId) {
+        final ProPublicaService propublicaService = new ProPublicaService();
+        propublicaService.findCongressMembers(memberId, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                mVotes = propublicaService.processVoteResults(response);
+                String count = mVotes.size() + "";
+                Log.d("COUNT: ", count);
 
+                RepDetailFragment.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        mVoteAdapter = new VoteListAdapter(getApplicationContext(), mVotes);
+                        mVotesRecyclerView.setAdapter(mVoteAdapter);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());  // prev RepDetailFragment.this
+                        mVotesRecyclerView.setLayoutManager(layoutManager);
+                        mVotesRecyclerView.setHasFixedSize(true);
+                    }
+                });
+            }
+        });
     }
 
 }

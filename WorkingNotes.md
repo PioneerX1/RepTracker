@@ -7,6 +7,9 @@ NEXT STEPS:
 
 - Create API call to populate RepDetail portion for voting stats
 
+- NEED VOTE_LIST_ITEM XML LAYOUT
+- NEED GET VOTES method called within RepDetailFragment to call the FindVotes() method within ProPublicaService
+
 
 ---
 Tues, 10/3

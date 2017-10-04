@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.pioneerx1.reptracker.Constants;
 import com.pioneerx1.reptracker.models.Rep;
+import com.pioneerx1.reptracker.models.Vote;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,6 +79,11 @@ public class ProPublicaService {
 
         Call call = client.newCall(request);
         call.enqueue(callback);
+    }
+
+    // process Results of Lisf of Votes
+    public ArrayList<Vote> processVoteResults(Response respone) {
+
     }
 
 
