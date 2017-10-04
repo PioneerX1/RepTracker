@@ -23,12 +23,20 @@ public class Rep {
 
     public Rep() { }
 
-    public Rep(String name, String title, String memberId, String state, String party) {
+    public Rep(String name, String title, String memberId, String state, String party, String phone, String website,
+               String missedVotes, String votesWithParty, String twitterHandle, String facebookAccount, String nextElection) {
         this.name = name;
         this.title = title;
         this.memberId = memberId;
         this.state = state;
         this.party = party;
+        this.phone = phone;
+        this.website = website;
+        this.missedVotes = missedVotes;
+        this.votesWithParty = votesWithParty;
+        this.twitterHandle = twitterHandle;
+        this.facebookAccount = facebookAccount;
+        this.nextElection = nextElection;
     }
 
     public String getName() {

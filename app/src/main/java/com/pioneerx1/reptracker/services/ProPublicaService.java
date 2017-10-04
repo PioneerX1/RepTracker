@@ -89,10 +89,9 @@ public class ProPublicaService {
                     String facebookAccount = memberJSON.getString("facebook_account");
                     String nextElection = memberJSON.getString("next_election");
 
-                    Rep newRep = new Rep(name, title, memberId, state, party);
+                    Rep newRep = new Rep(name, title, memberId, state, party, phone, website, missedVotes, votesWithParty,
+                                            twitterHandle, facebookAccount, nextElection);
                     reps.add(newRep);
-
-                    // Log.d(title, name);
                 }
 
             }
