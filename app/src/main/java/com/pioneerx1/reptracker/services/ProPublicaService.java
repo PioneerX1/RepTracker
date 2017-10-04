@@ -73,7 +73,7 @@ public class ProPublicaService {
         String url = urlBuilder.build().toString();
         url = url.concat(memberId).concat(Constants.PROPUBLICA_BASE_URL_VOTES_ENDING);
 
-        Log.d("VOTES URL: ", url);
+        // Log.d("VOTES URL: ", url);
 
         Request request = new Request.Builder().url(url).build();
 
@@ -88,7 +88,25 @@ public class ProPublicaService {
             String jsonData = response.body().string();
             if (response.isSuccessful()) {
                 JSONObject propublicaJSON = new JSONObject(jsonData);
-                Log.d("RESPONSE: ", jsonData);
+                // Log.d("RESPONSE: ", jsonData);
+                JSONArray resultsJSON = propublicaJSON.getJSONArray("results");
+                JSONArray votesJSON = resultsJSON.getJSONObject(0).getJSONArray("votes");
+                // Log.d("JSON VOTES: ", votesJSON.toString());
+                for (int i = 0; i < votesJSON.length(); i++) {
+                    JSONObject voteJSON = votesJSON.getJSONObject(i);
+                    // Log.d("EACH VOTE: ", voteJSON.toString());
+                    String memberId = voteJSON.getString("member_id");
+                    String question = voteJSON.getString("question");
+                    String description = voteJSON.getString("description");
+                    String voteDate = voteJSON.getString("date");
+                    String position = voteJSON.getString("position");
+                    String billId = voteJSON.getJSONObject("nomination").getString("nomination_id");
+                    // Log.d("Bill ID: ", billId);
+
+                    Vote newVote = new Vote(question, description, voteDate, position, billId, memberId);
+                    votes.add(newVote);
+                }
+
             }
         } catch (IOException e) {
             e.printStackTrace();
