@@ -4,6 +4,7 @@ NEXT STEPS:
 
 - Figure out why I am pulling less data from API per object (15 items vs 100)
   ** might be an extra parameter like "limit=500" needed
+    SOLUTION: The 16th representative in House doesn't even have a field for missed_votes_pct
 - Pursue SavedReps Activity (break code from SearchCongressActivity into RepListFragment??)
 
 

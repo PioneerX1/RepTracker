@@ -74,6 +74,8 @@ public class ProPublicaService {
 
                 JSONArray membersJSON = resultsJSON.getJSONObject(0).getJSONArray("members");
                 //Log.d("MEMBERS ARRAY", membersJSON.toString());
+                // it knows 101 senators and 446 representatives here
+                Log.d("---REPS SIZE: ", membersJSON.length()+" ");
 
                 for (int i = 0; i < membersJSON.length(); i++) {
                     JSONObject memberJSON = membersJSON.getJSONObject(i);
@@ -87,8 +89,23 @@ public class ProPublicaService {
                     // additional info
                     String phone = memberJSON.getString("phone");
                     String website = memberJSON.getString("url");
-                    String missedVotes = memberJSON.getString("missed_votes_pct");
-                    String votesWithParty = memberJSON.getString("votes_with_party_pct");
+
+                    String missedVotes;
+                    try {
+                        missedVotes = memberJSON.getString("missed_votes_pct");
+                    } catch (JSONException e) {
+                        missedVotes = "no data available ";
+                    }
+
+                    //String missedVotes = memberJSON.getString("missed_votes_pct");
+
+                    String votesWithParty;
+                    try {
+                        votesWithParty = memberJSON.getString("votes_with_party_pct");
+                    } catch (JSONException e) {
+                        votesWithParty = "no data available";
+                    }
+                    //String votesWithParty = memberJSON.getString("votes_with_party_pct");
                     String twitterHandle = memberJSON.getString("twitter_account");
                     String facebookAccount = memberJSON.getString("facebook_account");
                     String nextElection = memberJSON.getString("next_election");
@@ -96,7 +113,9 @@ public class ProPublicaService {
                     Rep newRep = new Rep(name, title, memberId, state, party, phone, website, missedVotes, votesWithParty,
                                             twitterHandle, facebookAccount, nextElection);
                     reps.add(newRep);
+                    Log.d("---ARRAY REPS: ", reps.size() + " ");
                 }
+
 
             }
         } catch (IOException e) {
