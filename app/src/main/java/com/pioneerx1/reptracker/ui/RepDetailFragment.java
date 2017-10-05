@@ -9,8 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.pioneerx1.reptracker.Constants;
 import com.pioneerx1.reptracker.R;
 import com.pioneerx1.reptracker.adapters.RepListAdapter;
 import com.pioneerx1.reptracker.adapters.VoteListAdapter;
@@ -32,7 +37,7 @@ import okhttp3.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RepDetailFragment extends Fragment {
+public class RepDetailFragment extends Fragment implements View.OnClickListener {
 
     @Bind(R.id.repDetailNameTextView) TextView mRepNameTextView;
     @Bind(R.id.repDetailMemberIdTextView) TextView mRepMemberIdTextView;
@@ -47,6 +52,7 @@ public class RepDetailFragment extends Fragment {
     @Bind(R.id.repDetailVotesWithPartyTextView) TextView mRepVotesWithPartyTextView;
     @Bind(R.id.repDetailNextElectionTextView) TextView mRepNextElectionTextView;
 
+    @Bind(R.id.saveRepButton) Button mSaveRepButton;
     @Bind(R.id.votesRecyclerView) RecyclerView mVotesRecyclerView;
 
     private Rep mRep;
@@ -90,7 +96,21 @@ public class RepDetailFragment extends Fragment {
 
         getVotes(mRep.getMemberId());
 
+        // on click listeners
+        mSaveRepButton.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mSaveRepButton) {
+            DatabaseReference repRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_SAVED_MEMBERS);
+            repRef.push().setValue(mRep);
+            Toast.makeText(getContext(), "Rep Saved", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void getVotes(String memberId) {
