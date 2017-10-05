@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "183567185087",
+    "firebase_url": "https://mars-rover-5c3cc.firebaseio.com",
+    "project_id": "mars-rover-5c3cc",
+    "storage_bucket": "mars-rover-5c3cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183567185087:android:24912c75a222a34f",
+        "android_client_info": {
+          "package_name": "com.pioneerx1.reptracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183567185087-h9aqipf5l155s4521bkhl0a4tu32o5jc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pioneerx1.reptracker",
+            "certificate_hash": "153886855755e6340a005d5255836a9d17bdbe1c"
+          }
+        },
+        {
+          "client_id": "183567185087-4ufhm2d71rscch697gk58gjovgjtfon7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbkxPRO4dDCmboJkdv3RAGiSIvrkAb4OA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183567185087-4ufhm2d71rscch697gk58gjovgjtfon7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

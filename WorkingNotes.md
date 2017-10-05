@@ -1,12 +1,18 @@
 Thurs, 10/5
 
+Next Steps: Firebase initialized, start by following along with link below on further setup...
+    https://www.learnhowtoprogram.com/android/data-persistence/firebase-firebase-structure-and-further-setup
+
+---
+Wed, 10/4 (cont'd)
 NEXT STEPS:
 
+    - Pursue SavedReps Activity (break code from SearchCongressActivity into RepListFragment??)
 - Look into Bill numbers stopping, looks like "no value for nomination" (similar JSON error as with reps)
+  ** This may be limited to only the 20 most recent votes (Eric Hardigan was 10/4)
 - Figure out why I am pulling less data from API per object (15 items vs 100)
   ** might be an extra parameter like "limit=500" needed
     SOLUTION: The 16th representative in House doesn't even have a field for missed_votes_pct
-- Pursue SavedReps Activity (break code from SearchCongressActivity into RepListFragment??)
 
 
 ---

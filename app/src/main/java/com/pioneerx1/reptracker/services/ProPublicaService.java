@@ -160,6 +160,7 @@ public class ProPublicaService {
                 JSONObject propublicaJSON = new JSONObject(jsonData);
                 JSONArray resultsJSON = propublicaJSON.getJSONArray("results");
                 JSONArray votesJSON = resultsJSON.getJSONObject(0).getJSONArray("votes");
+                Log.d("Votes Array: ", votesJSON.length() + " ");
                 for (int i = 0; i < votesJSON.length(); i++) {
                     JSONObject voteJSON = votesJSON.getJSONObject(i);
                     String memberId = voteJSON.getString("member_id");
@@ -172,7 +173,12 @@ public class ProPublicaService {
                     String chamber = voteJSON.getString("chamber");
                     String billId;
                     if (chamber.equals("Senate")) {
-                        billId = voteJSON.getJSONObject("nomination").getString("nomination_id");
+                        try {
+                            billId = voteJSON.getJSONObject("nomination").getString("nomination_id");
+                        } catch (JSONException e) {
+                            billId = "no bill id specified";
+                        }
+
                     } else {
                         billId = voteJSON.getJSONObject("bill").getString("bill_id");
                     }
