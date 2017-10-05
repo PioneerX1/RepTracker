@@ -9,7 +9,8 @@
     <TextView
         android:layout_width="359dp"
         android:layout_height="36dp"
-        android:text="Search by House or Senate"
+        android:text="Search by Chamber"
+        android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

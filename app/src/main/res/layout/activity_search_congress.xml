@@ -22,8 +22,8 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/congressRepsRecyclerView"
-        android:layout_width="277dp"
-        android:layout_height="312dp"
+        android:layout_width="342dp"
+        android:layout_height="444dp"
         android:layout_below="@+id/titleTextViewRepList"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
@@ -33,6 +33,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextViewRepList"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.666"
+        tools:layout_editor_absoluteY="35dp"
+        tools:layout_editor_absoluteX="20dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -21,7 +21,8 @@
         <activity android:name=".ui.SearchCongressActivity" />
         <activity android:name=".ui.SavedRepsListActivity" />
         <activity android:name=".ui.RepDetailActivity" />
-        <activity android:name=".ui.CreateAccountActivity"></activity>
+        <activity android:name=".ui.CreateAccountActivity" />
+        <activity android:name=".ui.LoginActivity"></activity>
     </application>
 
 </manifest>
