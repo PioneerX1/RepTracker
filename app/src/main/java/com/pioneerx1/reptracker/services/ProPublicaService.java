@@ -44,7 +44,6 @@ public class ProPublicaService {
         } else {
             urlBuilder = HttpUrl.parse(Constants.PROPUBLICA_BASE_URL_HOUSE).newBuilder();
         }
-        // urlBuilder.addQueryParameter("limit", "500");
 
         String url = urlBuilder.build().toString();
         Request request = new Request.Builder().url(url).build();
@@ -73,9 +72,6 @@ public class ProPublicaService {
                 }
 
                 JSONArray membersJSON = resultsJSON.getJSONObject(0).getJSONArray("members");
-                //Log.d("MEMBERS ARRAY", membersJSON.toString());
-                // it knows 101 senators and 446 representatives here
-                Log.d("---REPS SIZE: ", membersJSON.length()+" ");
 
                 for (int i = 0; i < membersJSON.length(); i++) {
                     JSONObject memberJSON = membersJSON.getJSONObject(i);
@@ -97,23 +93,26 @@ public class ProPublicaService {
                         missedVotes = "no data available ";
                     }
 
-                    //String missedVotes = memberJSON.getString("missed_votes_pct");
-
                     String votesWithParty;
                     try {
                         votesWithParty = memberJSON.getString("votes_with_party_pct");
                     } catch (JSONException e) {
-                        votesWithParty = "no data available";
+                        votesWithParty = "no data available ";
                     }
-                    //String votesWithParty = memberJSON.getString("votes_with_party_pct");
+
                     String twitterHandle = memberJSON.getString("twitter_account");
                     String facebookAccount = memberJSON.getString("facebook_account");
-                    String nextElection = memberJSON.getString("next_election");
+
+                    String nextElection;
+                    try {
+                        nextElection = memberJSON.getString("next_election");
+                    } catch (JSONException e) {
+                        nextElection = "no data available ";
+                    }
 
                     Rep newRep = new Rep(name, title, memberId, state, party, phone, website, missedVotes, votesWithParty,
                                             twitterHandle, facebookAccount, nextElection);
                     reps.add(newRep);
-                    Log.d("---ARRAY REPS: ", reps.size() + " ");
                 }
 
 
@@ -146,8 +145,6 @@ public class ProPublicaService {
         String url = urlBuilder.build().toString();
         url = url.concat(memberId).concat(Constants.PROPUBLICA_BASE_URL_VOTES_ENDING);
 
-        // Log.d("VOTES URL: ", url);
-
         Request request = new Request.Builder().url(url).build();
 
         Call call = client.newCall(request);
@@ -161,13 +158,10 @@ public class ProPublicaService {
             String jsonData = response.body().string();
             if (response.isSuccessful()) {
                 JSONObject propublicaJSON = new JSONObject(jsonData);
-                // Log.d("RESPONSE: ", jsonData);
                 JSONArray resultsJSON = propublicaJSON.getJSONArray("results");
                 JSONArray votesJSON = resultsJSON.getJSONObject(0).getJSONArray("votes");
-                // Log.d("JSON VOTES: ", votesJSON.toString());
                 for (int i = 0; i < votesJSON.length(); i++) {
                     JSONObject voteJSON = votesJSON.getJSONObject(i);
-                    // Log.d("EACH VOTE: ", voteJSON.toString());
                     String memberId = voteJSON.getString("member_id");
                     String question = voteJSON.getString("question");
                     String description = voteJSON.getString("description");
