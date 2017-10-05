@@ -60,7 +60,7 @@ public class FirebaseRepViewHolder extends RecyclerView.ViewHolder implements Vi
                 }
                 int itemPosition = getLayoutPosition();
                 Intent intent = new Intent(mContext, RepDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
+                intent.putExtra("position", itemPosition);  // removed extra " " after itemPosition, was defaulting to the first saved rep
                 intent.putExtra("reps", Parcels.wrap(reps));
                 mContext.startActivity(intent);
             }
