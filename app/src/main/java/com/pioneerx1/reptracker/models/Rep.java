@@ -29,7 +29,7 @@ public class Rep {
         this.title = title;
         this.memberId = memberId;
         this.state = state;
-        this.party = party;
+        this.party = setParty(party);
         this.phone = phone;
         this.website = website;
         this.missedVotes = missedVotes;
@@ -37,6 +37,22 @@ public class Rep {
         this.twitterHandle = twitterHandle;
         this.facebookAccount = facebookAccount;
         this.nextElection = nextElection;
+    }
+
+    public String setParty(String letter) {
+        if (letter.equals("D")) {
+            return "Democrat";
+        } else if (letter.equals("R")) {
+            return "Republican";
+        } else if (letter.equals("G")) {
+            return "Green";
+        } else if (letter.equals("L")) {
+            return "Libertarian";
+        } else if (letter.equals("I")) {
+            return "Independent";
+        } else {
+            return "Unknown";
+        }
     }
 
     public String getName() {
