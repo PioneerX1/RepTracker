@@ -44,6 +44,7 @@ public class ProPublicaService {
         } else {
             urlBuilder = HttpUrl.parse(Constants.PROPUBLICA_BASE_URL_HOUSE).newBuilder();
         }
+        // urlBuilder.addQueryParameter("limit", "500");
 
         String url = urlBuilder.build().toString();
         Request request = new Request.Builder().url(url).build();
@@ -52,79 +53,6 @@ public class ProPublicaService {
         call.enqueue(callback);
 
     }
-
-    // pull voting record for individual Congress Member
-    public static void findVotes(String memberId, Callback callback) {
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        Request.Builder ongoing = chain.request().newBuilder();
-                        ongoing.addHeader(Constants.PROPUBLICA_API_HEADER_PARAMETER, Constants.PROPUBLICA_API_KEY);
-                        return chain.proceed(ongoing.build());
-                    }
-                })
-                .build();
-
-        HttpUrl.Builder urlBuilder;
-        urlBuilder = HttpUrl.parse(Constants.PROPUBLICA_BASE_URL_VOTES).newBuilder();
-
-        String url = urlBuilder.build().toString();
-        url = url.concat(memberId).concat(Constants.PROPUBLICA_BASE_URL_VOTES_ENDING);
-
-        // Log.d("VOTES URL: ", url);
-
-        Request request = new Request.Builder().url(url).build();
-
-        Call call = client.newCall(request);
-        call.enqueue(callback);
-    }
-
-    // process Results of Lisf of Votes
-    public ArrayList<Vote> processVoteResults(Response response) {
-        ArrayList<Vote> votes = new ArrayList<>();
-        try {
-            String jsonData = response.body().string();
-            if (response.isSuccessful()) {
-                JSONObject propublicaJSON = new JSONObject(jsonData);
-                // Log.d("RESPONSE: ", jsonData);
-                JSONArray resultsJSON = propublicaJSON.getJSONArray("results");
-                JSONArray votesJSON = resultsJSON.getJSONObject(0).getJSONArray("votes");
-                // Log.d("JSON VOTES: ", votesJSON.toString());
-                for (int i = 0; i < votesJSON.length(); i++) {
-                    JSONObject voteJSON = votesJSON.getJSONObject(i);
-                    // Log.d("EACH VOTE: ", voteJSON.toString());
-                    String memberId = voteJSON.getString("member_id");
-                    String question = voteJSON.getString("question");
-                    String description = voteJSON.getString("description");
-                    String voteDate = voteJSON.getString("date");
-                    String position = voteJSON.getString("position");
-
-                    // bill info is structures differently for Senate vs House (nominations vs bills)
-                    String chamber = voteJSON.getString("chamber");
-                    String billId;
-                    if (chamber.equals("Senate")) {
-                        billId = voteJSON.getJSONObject("nomination").getString("nomination_id");
-                    } else {
-                        billId = voteJSON.getJSONObject("bill").getString("bill_id");
-                    }
-
-                    Vote newVote = new Vote(question, description, voteDate, position, billId, memberId);
-                    votes.add(newVote);
-                }
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-        return votes;
-    }
-
 
     // process Results of List of Congress Members
     public ArrayList<Rep> processResults(Response response) {
@@ -178,5 +106,78 @@ public class ProPublicaService {
         }
         return reps;
     }
+
+    // pull voting record for individual Congress Member
+    public static void findVotes(String memberId, Callback callback) {
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request.Builder ongoing = chain.request().newBuilder();
+                        ongoing.addHeader(Constants.PROPUBLICA_API_HEADER_PARAMETER, Constants.PROPUBLICA_API_KEY);
+                        return chain.proceed(ongoing.build());
+                    }
+                })
+                .build();
+
+        HttpUrl.Builder urlBuilder;
+        urlBuilder = HttpUrl.parse(Constants.PROPUBLICA_BASE_URL_VOTES).newBuilder();
+
+        String url = urlBuilder.build().toString();
+        url = url.concat(memberId).concat(Constants.PROPUBLICA_BASE_URL_VOTES_ENDING);
+
+        // Log.d("VOTES URL: ", url);
+
+        Request request = new Request.Builder().url(url).build();
+
+        Call call = client.newCall(request);
+        call.enqueue(callback);
+    }
+
+    // process Results of List of Votes
+    public ArrayList<Vote> processVoteResults(Response response) {
+        ArrayList<Vote> votes = new ArrayList<>();
+        try {
+            String jsonData = response.body().string();
+            if (response.isSuccessful()) {
+                JSONObject propublicaJSON = new JSONObject(jsonData);
+                // Log.d("RESPONSE: ", jsonData);
+                JSONArray resultsJSON = propublicaJSON.getJSONArray("results");
+                JSONArray votesJSON = resultsJSON.getJSONObject(0).getJSONArray("votes");
+                // Log.d("JSON VOTES: ", votesJSON.toString());
+                for (int i = 0; i < votesJSON.length(); i++) {
+                    JSONObject voteJSON = votesJSON.getJSONObject(i);
+                    // Log.d("EACH VOTE: ", voteJSON.toString());
+                    String memberId = voteJSON.getString("member_id");
+                    String question = voteJSON.getString("question");
+                    String description = voteJSON.getString("description");
+                    String voteDate = voteJSON.getString("date");
+                    String position = voteJSON.getString("position");
+
+                    // bill info is structures differently for Senate vs House (nominations vs bills)
+                    String chamber = voteJSON.getString("chamber");
+                    String billId;
+                    if (chamber.equals("Senate")) {
+                        billId = voteJSON.getJSONObject("nomination").getString("nomination_id");
+                    } else {
+                        billId = voteJSON.getJSONObject("bill").getString("bill_id");
+                    }
+
+                    Vote newVote = new Vote(question, description, voteDate, position, billId, memberId);
+                    votes.add(newVote);
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        return votes;
+    }
+
 
 }

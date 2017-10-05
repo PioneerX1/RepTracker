@@ -1,3 +1,13 @@
+Thurs, 10/5
+
+NEXT STEPS:
+
+- Figure out why I am pulling less data from API per object (15 items vs 100)
+  ** might be an extra parameter like "limit=500" needed
+- Pursue SavedReps Activity (break code from SearchCongressActivity into RepListFragment??)
+
+
+---
 Wed, 10/4
 
 NEXT STEPS:
