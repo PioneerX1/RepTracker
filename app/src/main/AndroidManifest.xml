@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".ui.SearchCongressActivity" />
         <activity android:name=".ui.SavedRepsListActivity" />
-        <activity android:name=".ui.RepDetailActivity"></activity>
+        <activity android:name=".ui.RepDetailActivity" />
+        <activity android:name=".ui.CreateAccountActivity"></activity>
     </application>
 
 </manifest>
