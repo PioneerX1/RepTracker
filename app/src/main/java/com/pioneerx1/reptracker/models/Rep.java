@@ -20,6 +20,9 @@ public class Rep {
     String facebookAccount;
     String nextElection;  // JSON data is String
 
+    // for user nodes
+    private String pushId;
+
 
     public Rep() { }
 
@@ -37,6 +40,7 @@ public class Rep {
         this.twitterHandle = twitterHandle;
         this.facebookAccount = facebookAccount;
         this.nextElection = nextElection;
+        // this.pushId = "no push id yet";
     }
 
     public String setParty(String letter) {
@@ -88,5 +92,13 @@ public class Rep {
     public String getFacebookAccount() { return facebookAccount; }
 
     public String getNextElection() { return nextElection; }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
 
 }

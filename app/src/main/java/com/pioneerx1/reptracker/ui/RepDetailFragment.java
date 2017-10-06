@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pioneerx1.reptracker.Constants;
@@ -72,6 +74,7 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRep = Parcels.unwrap(getArguments().getParcelable("rep"));
+        Log.d("ON CREATE", mRep.getName());
     }
 
 
@@ -81,7 +84,10 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
         View view = inflater.inflate(R.layout.fragment_rep_detail, container, false);
         ButterKnife.bind(this, view);
 
+        Log.d("DETAIL FRAGMENT", "---ON CREATE VIEW REACHED");
+
         mRepNameTextView.setText("Name: " + mRep.getName());
+        Log.d("REP NAME: ", mRep.getName());
         mRepMemberIdTextView.setText("Member ID: " + mRep.getMemberId());
         mRepTitleTextView.setText("Title: " + mRep.getTitle());
         mRepPartyTextView.setText("Party: " + mRep.getParty());
@@ -94,6 +100,8 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
         mRepVotesWithPartyTextView.setText("Percent of Time Votes with Party: " + mRep.getVotesWithParty() + "%");
         mRepNextElectionTextView.setText("Next Election Year: " + mRep.getNextElection());
 
+        //Log.d("--REP FACEBOOK: ", mRep.getFacebookAccount());
+
         getVotes(mRep.getMemberId());
 
         // on click listeners
@@ -105,10 +113,20 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         if (v == mSaveRepButton) {
+            // create a pushId for Rep and User when it is saved
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+
             DatabaseReference repRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_SAVED_MEMBERS);
-            repRef.push().setValue(mRep);
+                    .getReference(Constants.FIREBASE_CHILD_SAVED_MEMBERS)
+                    .child(uid);  // create the node
+
+            DatabaseReference pushRef = repRef.push();
+            String pushId = pushRef.getKey();
+            mRep.setPushId(pushId);
+            pushRef.setValue(mRep);
+
             Toast.makeText(getContext(), "Rep Saved", Toast.LENGTH_SHORT).show();
         }
     }

@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pioneerx1.reptracker.Constants;
@@ -31,9 +33,14 @@ public class SavedRepsListActivity extends AppCompatActivity {
         Log.d("You have arrived at ", " SAVED REPS LIST ACTIVITY");
         ButterKnife.bind(this);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
         mRepReference = FirebaseDatabase
                 .getInstance()
-                .getReference(Constants.FIREBASE_CHILD_SAVED_MEMBERS);
+                .getReference(Constants.FIREBASE_CHILD_SAVED_MEMBERS)
+                .child(uid);
+
         setUpFirebaseAdapter();
     }
 
