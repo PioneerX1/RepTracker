@@ -1,7 +1,14 @@
+Fri, 10/6
+
+Next Steps:
+- Continue building the Login functionality with Firebase. Create Account, Display Name, and Log Out complete, next step "Logging In"
+- Link up Saved Reps with individual User Accounts
+- Animation for when API loads (similar to Create Account animation)
+
+---
 Thurs, 10/5
 
-Next Steps: Firebase initialized, start by following along with link below on further setup...
-    https://www.learnhowtoprogram.com/android/data-persistence/firebase-firebase-structure-and-further-setup
+Next Steps: Firebase initial setup complete, link it up to save and retrieve data
 
 ---
 Wed, 10/4 (cont'd)
