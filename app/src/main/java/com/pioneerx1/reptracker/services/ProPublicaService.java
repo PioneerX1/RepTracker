@@ -1,6 +1,7 @@
 package com.pioneerx1.reptracker.services;
 
 
+import android.app.ProgressDialog;
 import android.util.Log;
 
 import com.pioneerx1.reptracker.Constants;
@@ -24,8 +25,10 @@ import okhttp3.Response;
 
 public class ProPublicaService {
 
+
     // pull list Congress Members from either Senate or House
     public static void findCongressMembers(String congressChamber, Callback callback) {
+
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {

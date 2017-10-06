@@ -3,7 +3,7 @@ Fri, 10/6
 Next Steps:
 - Continue building the Login functionality with Firebase. Create Account, Display Name, and Log Out complete, next step "Logging In"
 - Link up Saved Reps with individual User Accounts
-- Animation for when API loads (similar to Create Account animation)
+- Animation for when API loads (similar to Create Account animation) **This might need to go into ProPublicaService (not SearchCongressActivity)
 
 ---
 Thurs, 10/5

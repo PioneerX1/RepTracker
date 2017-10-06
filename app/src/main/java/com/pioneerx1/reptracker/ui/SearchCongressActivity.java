@@ -1,5 +1,6 @@
 package com.pioneerx1.reptracker.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,8 +24,6 @@ import okhttp3.Response;
 
 public class SearchCongressActivity extends AppCompatActivity {
 
-    // get API call from this activity working, then REFACTOR this into a FRAGMENT!!!
-
     private ArrayList<Rep> mAllReps = new ArrayList<>();
     private RepListAdapter mAdapter;
 
@@ -33,6 +32,8 @@ public class SearchCongressActivity extends AppCompatActivity {
     // hard-code this for now:
     String congressChamber = "not specified";
 
+    private ProgressDialog mRetrieveProgressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +41,28 @@ public class SearchCongressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_congress);
         ButterKnife.bind(this);
 
+        createRetrieveProgressDialog();
+        mRetrieveProgressDialog.show();
         Intent intent = getIntent();
         congressChamber = intent.getStringExtra("chamber");
 
         getCongressMembers(congressChamber);
     }
 
+    private void createRetrieveProgressDialog() {
+        mRetrieveProgressDialog = new ProgressDialog(this);
+        mRetrieveProgressDialog.setTitle("Loading...");
+        mRetrieveProgressDialog.setMessage("Retrieving Congress Members...");
+        mRetrieveProgressDialog.setCancelable(false);
+    }
+
     private void getCongressMembers(String congressChamber) {
+
+
+
         final ProPublicaService propublicaService = new ProPublicaService();
         propublicaService.findCongressMembers(congressChamber, new Callback() {
+
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -60,6 +74,7 @@ public class SearchCongressActivity extends AppCompatActivity {
                 Log.d("COUNT: ", count);
 
                 SearchCongressActivity.this.runOnUiThread(new Runnable() {
+
                    @Override
                     public void run() {
 
@@ -68,9 +83,11 @@ public class SearchCongressActivity extends AppCompatActivity {
                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchCongressActivity.this);
                        mCongressRepsRecyclerView.setLayoutManager(layoutManager);
                        mCongressRepsRecyclerView.setHasFixedSize(true);
+                       mRetrieveProgressDialog.dismiss();
                    }
                 });
             }
+
         });
     }
 
