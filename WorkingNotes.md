@@ -1,3 +1,8 @@
+Mon, 10/9
+
+Firebase Bug: Look at Restaurants Constants file, might need a reference to the user or Rep node?
+
+---
 Fri, 10/6
 
 Next Steps:
