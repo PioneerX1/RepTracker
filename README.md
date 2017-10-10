@@ -42,7 +42,7 @@ Please contact the developer, Mick Sexton, at lacrookedbeat@hotmail.com for any 
 
 ## Technologies Used
 
-Technologies used include Java, Android Studio, XML, Git, Firebase, and the Vote API.
+Technologies used include Java, Android Studio, XML, Git, Firebase, and the ProPublica Congress API.
 
 ## License
 
