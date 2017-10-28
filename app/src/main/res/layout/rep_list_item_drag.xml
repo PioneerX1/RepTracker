@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/common_action_bar_splitter"
+    android:layout_marginTop="5dp"
+    android:padding="5dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/repNameTextView"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Rep's Name"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/repTitleTextView"
+        android:layout_below="@+id/repNameTextView"
+        android:text="Rep's Title"
+        android:textStyle="italic"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/repStateTextView"
+        android:layout_below="@+id/repTitleTextView"
+        android:text="Rep's State"
+        android:textStyle="italic"
+        />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/dragIcon"
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/ic_reorder_white_24dp"
+        android:layout_margin="5dp"
+        />
+
+</LinearLayout>
