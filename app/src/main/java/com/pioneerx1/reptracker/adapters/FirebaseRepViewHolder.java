@@ -38,7 +38,7 @@ public class FirebaseRepViewHolder extends RecyclerView.ViewHolder implements Vi
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
+        //itemView.setOnClickListener(this);
     }
 
     public void bindRep(Rep rep) {

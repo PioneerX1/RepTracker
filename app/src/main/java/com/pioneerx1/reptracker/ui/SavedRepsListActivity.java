@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.pioneerx1.reptracker.Constants;
 import com.pioneerx1.reptracker.R;
 import com.pioneerx1.reptracker.adapters.FirebaseRepListAdapter;
@@ -47,13 +48,14 @@ public class SavedRepsListActivity extends AppCompatActivity implements OnStartD
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
-        mRepReference = FirebaseDatabase
+        Query query = FirebaseDatabase
                 .getInstance()
                 .getReference(Constants.FIREBASE_CHILD_SAVED_MEMBERS)
-                .child(uid);
+                .child(uid)
+                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
 
         mFirebaseAdapter = new FirebaseRepListAdapter(Rep.class, R.layout.rep_list_item_drag,
-                FirebaseRepViewHolder.class, mRepReference, this, this);
+                FirebaseRepViewHolder.class, query, this, this);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

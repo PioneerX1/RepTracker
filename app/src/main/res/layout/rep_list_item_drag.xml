@@ -6,7 +6,6 @@
     android:background="@color/common_action_bar_splitter"
     android:layout_marginTop="5dp"
     android:padding="5dp"
-    android:id="@+id/repDragView"
     >
 
     <TextView

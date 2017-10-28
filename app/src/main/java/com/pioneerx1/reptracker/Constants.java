@@ -11,5 +11,6 @@ public class Constants {
     public static final String PROPUBLICA_BASE_URL_VOTES_ENDING = "/votes.json";
 
     public static final String FIREBASE_CHILD_SAVED_MEMBERS = "savedMembers";
+    public static final String FIREBASE_QUERY_INDEX = "index";
 
 }

@@ -22,6 +22,7 @@ public class Rep {
 
     // for user nodes
     private String pushId;
+    String index;
 
 
     public Rep() { }
@@ -41,6 +42,7 @@ public class Rep {
         this.facebookAccount = facebookAccount;
         this.nextElection = nextElection;
         // this.pushId = "no push id yet";
+        this.index = "not_specified";
     }
 
     public String setParty(String letter) {
@@ -99,6 +101,14 @@ public class Rep {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 
 }
