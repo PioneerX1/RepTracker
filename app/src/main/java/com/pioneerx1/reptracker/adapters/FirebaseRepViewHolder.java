@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,7 +31,8 @@ public class FirebaseRepViewHolder extends RecyclerView.ViewHolder implements Vi
 
     View mView;
     Context mContext;
-    public LinearLayout mRepDragView;
+    //public LinearLayout mRepDragView;
+    public ImageView mRepDragView;
 
     public FirebaseRepViewHolder(View itemView) {
         super(itemView);
@@ -41,7 +43,7 @@ public class FirebaseRepViewHolder extends RecyclerView.ViewHolder implements Vi
 
     public void bindRep(Rep rep) {
 
-        mRepDragView = (LinearLayout) mView.findViewById(R.id.repDragView);
+        mRepDragView = (ImageView) mView.findViewById(R.id.dragIcon);
 
         // db check these R id's because they are also used for Find Reps
         TextView repNameTextView = (TextView) mView.findViewById(R.id.repNameTextView);
