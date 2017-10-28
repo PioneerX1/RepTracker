@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,11 +50,14 @@ public class FirebaseRepViewHolder extends RecyclerView.ViewHolder implements Vi
 
     @Override
     public void onClick(View view) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
         final ArrayList<Rep> reps = new ArrayList<>();
         DatabaseReference ref = FirebaseDatabase
                 .getInstance()
                 .getReference(Constants.FIREBASE_CHILD_SAVED_MEMBERS)
-                .child("PsnWZhJmW0cAtoEgzfcGGSIGCeW2");
+                .child(uid);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
