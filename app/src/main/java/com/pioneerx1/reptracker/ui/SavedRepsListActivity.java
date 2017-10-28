@@ -46,7 +46,7 @@ public class SavedRepsListActivity extends AppCompatActivity {
 
     private void setUpFirebaseAdapter() {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Rep, FirebaseRepViewHolder>
-                (Rep.class, R.layout.rep_list_item, FirebaseRepViewHolder.class, mRepReference) {
+                (Rep.class, R.layout.rep_list_item_drag, FirebaseRepViewHolder.class, mRepReference) {
 
             @Override
             protected void populateViewHolder(FirebaseRepViewHolder viewHolder, Rep model, int position) {
