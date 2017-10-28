@@ -4,6 +4,7 @@ package com.pioneerx1.reptracker.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -50,14 +51,19 @@ public class FirebaseRepViewHolder extends RecyclerView.ViewHolder implements Vi
         final ArrayList<Rep> reps = new ArrayList<>();
         DatabaseReference ref = FirebaseDatabase
                 .getInstance()
-                .getReference(Constants.FIREBASE_CHILD_SAVED_MEMBERS);
+                .getReference(Constants.FIREBASE_CHILD_SAVED_MEMBERS)
+                .child("PsnWZhJmW0cAtoEgzfcGGSIGCeW2");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     reps.add(snapshot.getValue(Rep.class));
+                    Log.d("snapshot value", snapshot.getValue().toString());
+                    Log.d("reps value", reps.get(0).toString());
                 }
+                Log.d("reps 1st", reps.get(0).getName() + " ");
+                Log.d("reps 2nd", reps.get(1).toString());
                 int itemPosition = getLayoutPosition();
                 Intent intent = new Intent(mContext, RepDetailActivity.class);
                 intent.putExtra("position", itemPosition);  // removed extra " " after itemPosition, was defaulting to the first saved rep
