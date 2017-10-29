@@ -1,3 +1,12 @@
+Sat, 10/28
+
+TO-DO:
+- implement alternative resource for landscape orientation
+- style this up much better (use House and Senate drawable logos instead of buttons, ditch the Votes recycler view, etc.)
+
+Firebase bug FIXED!! Added .child in FirebaseRepViewHolder's onClick method to focus on just that user's reps.
+
+---
 Mon, 10/9
 
 Firebase Bug: Look at Restaurants Constants file, might need a reference to the user or Rep node?
