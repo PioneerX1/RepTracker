@@ -24,71 +24,10 @@ import okhttp3.Response;
 
 public class SearchCongressActivity extends AppCompatActivity {
 
-    private ArrayList<Rep> mAllReps = new ArrayList<>();
-    private RepListAdapter mAdapter;
-
-    @Bind(R.id.congressRepsRecyclerView) RecyclerView mCongressRepsRecyclerView;
-
-    // hard-code this for now:
-    String congressChamber = "not specified";
-
-    private ProgressDialog mRetrieveProgressDialog;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_congress);
-        ButterKnife.bind(this);
-
-        createRetrieveProgressDialog();
-        mRetrieveProgressDialog.show();
-        Intent intent = getIntent();
-        congressChamber = intent.getStringExtra("chamber");
-
-        getCongressMembers(congressChamber);
-    }
-
-    private void createRetrieveProgressDialog() {
-        mRetrieveProgressDialog = new ProgressDialog(this);
-        mRetrieveProgressDialog.setTitle("Loading...");
-        mRetrieveProgressDialog.setMessage("Retrieving Congress Members...");
-        mRetrieveProgressDialog.setCancelable(false);
-    }
-
-    private void getCongressMembers(String congressChamber) {
-
-
-
-        final ProPublicaService propublicaService = new ProPublicaService();
-        propublicaService.findCongressMembers(congressChamber, new Callback() {
-
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                mAllReps = propublicaService.processResults(response);
-                String count = mAllReps.size() + "";
-                Log.d("COUNT: ", count);
-
-                SearchCongressActivity.this.runOnUiThread(new Runnable() {
-
-                   @Override
-                    public void run() {
-
-                       mAdapter = new RepListAdapter(getApplicationContext(),mAllReps);
-                       mCongressRepsRecyclerView.setAdapter(mAdapter);
-                       RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchCongressActivity.this);
-                       mCongressRepsRecyclerView.setLayoutManager(layoutManager);
-                       mCongressRepsRecyclerView.setHasFixedSize(true);
-                       mRetrieveProgressDialog.dismiss();
-                   }
-                });
-            }
-
-        });
     }
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,28 +13,14 @@
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
         android:text="List of Reps"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/congressRepsRecyclerView"
-        android:layout_width="342dp"
-        android:layout_height="444dp"
-        android:layout_below="@+id/titleTextViewRepList"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextViewRepList"
-        app:layout_constraintVertical_bias="0.666"
-        tools:layout_editor_absoluteY="35dp"
-        tools:layout_editor_absoluteX="20dp" />
+    <fragment
+        android:id="@+id/fragmentRepList"
+        android:name="com.pioneerx1.reptracker.ui.RepListFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_rep_list"
+        android:layout_below="@+id/titleTextViewRepList"/>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

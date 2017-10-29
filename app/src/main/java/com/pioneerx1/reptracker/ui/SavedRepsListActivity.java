@@ -24,58 +24,15 @@ import com.pioneerx1.reptracker.util.SimpleItemTouchHelperCallback;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SavedRepsListActivity extends AppCompatActivity implements OnStartDragListener {
+public class SavedRepsListActivity extends AppCompatActivity  {
 
-    private DatabaseReference mRepReference;
-    private FirebaseRepListAdapter mFirebaseAdapter;
-    private ItemTouchHelper mItemTouchHelper;
-    // private FirebaseRecyclerAdapter mFirebaseAdapter;
-
-    @Bind(R.id.congressRepsRecyclerView) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_congress);  // re-using search congress layout
-        Log.d("You have arrived at ", " SAVED REPS LIST ACTIVITY");
-        ButterKnife.bind(this);
-
-        setUpFirebaseAdapter();
-    }
-
-    private void setUpFirebaseAdapter() {
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-
-        Query query = FirebaseDatabase
-                .getInstance()
-                .getReference(Constants.FIREBASE_CHILD_SAVED_MEMBERS)
-                .child(uid)
-                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
-
-        mFirebaseAdapter = new FirebaseRepListAdapter(Rep.class, R.layout.rep_list_item_drag,
-                FirebaseRepViewHolder.class, query, this, this);
-
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mFirebaseAdapter);
-
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
-        mItemTouchHelper = new ItemTouchHelper(callback);
-        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
+        setContentView(R.layout.activity_saved_reps_list);
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mFirebaseAdapter.cleanup();
-    }
-
-    @Override
-    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
-        mItemTouchHelper.startDrag(viewHolder);
-    }
 
 }
