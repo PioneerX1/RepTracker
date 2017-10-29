@@ -22,12 +22,13 @@ import com.pioneerx1.reptracker.Constants;
 import com.pioneerx1.reptracker.R;
 import com.pioneerx1.reptracker.models.Rep;
 import com.pioneerx1.reptracker.ui.RepDetailActivity;
+import com.pioneerx1.reptracker.util.ItemTouchHelperViewHolder;
 
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-public class FirebaseRepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FirebaseRepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ItemTouchHelperViewHolder {
 
     View mView;
     Context mContext;
@@ -88,6 +89,16 @@ public class FirebaseRepViewHolder extends RecyclerView.ViewHolder implements Vi
 
             }
         });
+    }
+
+    @Override
+    public void onItemSelected() {
+        Log.d("Animation", "onItemSelected");
+    }
+
+    @Override
+    public void onItemClear() {
+        Log.d("Animation", "onItemClear");
     }
 
 }
