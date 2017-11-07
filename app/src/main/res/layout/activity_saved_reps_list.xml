@@ -6,13 +6,21 @@
     android:layout_height="match_parent"
     tools:context="com.pioneerx1.reptracker.ui.SavedRepsListActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/congressImage"
+        android:src="@drawable/congresspic"
+        android:scaleType="center"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/titleTextViewRepList"
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
-        android:text="List of Reps"
+        android:text="List of Your Saved Reps"
         />
 
     <fragment

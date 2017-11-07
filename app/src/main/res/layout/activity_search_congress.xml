@@ -6,21 +6,22 @@
     android:layout_height="match_parent"
     tools:context="com.pioneerx1.reptracker.ui.SearchCongressActivity">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/titleTextViewRepList"
-        android:layout_centerHorizontal="true"
-        android:textSize="30sp"
-        android:text="List of Reps"
+        android:layout_height="match_parent"
+        android:id="@+id/congressImage"
+        android:src="@drawable/congresspic"
+        android:scaleType="center"
         />
+
 
     <fragment
         android:id="@+id/fragmentRepList"
         android:name="com.pioneerx1.reptracker.ui.RepListFragment"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         tools:layout="@layout/fragment_rep_list"
-        android:layout_below="@+id/titleTextViewRepList"/>
+        />
 
 </RelativeLayout>

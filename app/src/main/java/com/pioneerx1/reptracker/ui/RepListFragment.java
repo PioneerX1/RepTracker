@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.pioneerx1.reptracker.R;
 import com.pioneerx1.reptracker.adapters.RepListAdapter;
@@ -32,10 +32,12 @@ import okhttp3.Response;
 public class RepListFragment extends Fragment {
 
     @Bind(R.id.congressRepsRecyclerView) RecyclerView mCongressRepsRecyclerView;
+    @Bind(R.id.titleTextViewRepList) TextView mTitleTextViewRepList;
     private RepListAdapter mAdapter;
     private ArrayList<Rep> mAllReps = new ArrayList<>();
     private ProgressDialog mRetrieveProgressDialog;
     String congressChamber = "not specified";
+
 
     public RepListFragment() {
         // Required empty public constructor
@@ -60,6 +62,13 @@ public class RepListFragment extends Fragment {
 
         Intent intent = getActivity().getIntent();
         congressChamber = intent.getStringExtra("chamber");
+
+        if (congressChamber.equals("senate")) {
+            mTitleTextViewRepList.setText("List of Senators");
+        } else {
+            mTitleTextViewRepList.setText("List of House Members");
+        }
+
         getCongressMembers(congressChamber);
 
         return view;

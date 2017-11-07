@@ -5,30 +5,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.pioneerx1.reptracker.ui.RepListFragment">
 
-    <ImageView
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/congressImage"
-        android:src="@drawable/congresspic"
-        android:scaleType="center"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleTextViewRepList"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimaryLight"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="List of Reps"
         />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/congressRepsRecyclerView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextViewRepList"
-        app:layout_constraintVertical_bias="0.666"
-        android:layout_width="375dp"
-        android:layout_height="443dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/titleTextViewRepList"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="0dp"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="35dp"
-        tools:ignore="ObsoleteLayoutParam" />
+        android:layout_marginTop="50dp"
+        android:id="@+id/congressRepsRecyclerView"
+        >
+    </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>
