@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -82,6 +85,7 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
         mRep = Parcels.unwrap(getArguments().getParcelable("rep"));
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -114,6 +118,7 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
         } else {
             mSaveRepButton.setVisibility(View.GONE);
         }
+
         return view;
     }
 

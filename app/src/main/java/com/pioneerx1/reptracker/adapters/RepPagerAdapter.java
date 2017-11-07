@@ -4,6 +4,7 @@ package com.pioneerx1.reptracker.adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.MotionEvent;
 import android.widget.ScrollView;
 
 import com.pioneerx1.reptracker.R;
