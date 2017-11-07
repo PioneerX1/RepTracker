@@ -20,7 +20,10 @@
         android:id="@+id/titleTextViewRepList"
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
-        android:text="List of Your Saved Reps"
+        android:text="Your Saved Reps"
+        android:textColor="@color/colorPrimaryLight"
+        android:textStyle="bold"
+        android:textAlignment="center"
         />
 
     <fragment

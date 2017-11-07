@@ -6,6 +6,7 @@
     android:background="@color/common_action_bar_splitter"
     android:layout_marginTop="5dp"
     android:padding="5dp"
+    android:alpha="0.95"
     >
 
     <TextView
