@@ -7,6 +7,14 @@
     android:background="@color/colorPrimary"
     tools:context="com.pioneerx1.reptracker.ui.CreateAccountActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/congressImage"
+        android:src="@drawable/congresspic"
+        android:scaleType="center"
+        />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -86,10 +94,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@color/colorTextIcons"
+            android:textColor="@color/colorAccent"
             android:textStyle="bold"
             android:textSize="15sp"
             android:text="Already have an account? Log in here!"
+            android:background="@color/colorPrimaryDark"
             android:id="@+id/loginTextView"
             android:layout_gravity="center_horizontal" />
 

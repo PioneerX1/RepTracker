@@ -5,6 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.pioneerx1.reptracker.ui.SavedRepListFragment">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/congressImage"
+        android:src="@drawable/congresspic"
+        android:scaleType="center"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/congressRepsRecyclerView"
         app:layout_constraintBottom_toBottomOf="parent"
