@@ -1,22 +1,16 @@
 package com.pioneerx1.reptracker.ui;
 
 
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pioneerx1.reptracker.Constants;
 import com.pioneerx1.reptracker.R;
-import com.pioneerx1.reptracker.adapters.RepListAdapter;
 import com.pioneerx1.reptracker.adapters.VoteListAdapter;
 import com.pioneerx1.reptracker.models.Rep;
 import com.pioneerx1.reptracker.models.Vote;
@@ -48,22 +41,22 @@ import okhttp3.Response;
  */
 public class RepDetailFragment extends Fragment implements View.OnClickListener {
 
-    @Bind(R.id.repDetailNameTextView) TextView mRepNameTextView;
-    @Bind(R.id.repDetailMemberIdTextView) TextView mRepMemberIdTextView;
+    //@Bind(R.id.repDetailNameTextView) TextView mRepNameTextView;
+    //@Bind(R.id.repDetailMemberIdTextView) TextView mRepMemberIdTextView;
     @Bind(R.id.repDetailTitleTextView) TextView mRepTitleTextView;
     @Bind(R.id.repDetailPartyTextView) TextView mRepPartyTextView;
     @Bind(R.id.repDetailStateTextView) TextView mRepStateTextView;
     @Bind(R.id.repDetailPhoneTextView) TextView mRepPhoneTextView;
     @Bind(R.id.repDetailWebsiteTextView) TextView mRepWebsiteTextView;
-    @Bind(R.id.repDetailTwitterTextView) TextView mRepTwitterTextView;
-    @Bind(R.id.repDetailFacebookTextView) TextView mRepFacebookTextView;
+    //@Bind(R.id.repDetailTwitterTextView) TextView mRepTwitterTextView;
+    //@Bind(R.id.repDetailFacebookTextView) TextView mRepFacebookTextView;
     @Bind(R.id.repDetailMissedVotesTextView) TextView mRepMissedVotesTextView;
     @Bind(R.id.repDetailVotesWithPartyTextView) TextView mRepVotesWithPartyTextView;
     @Bind(R.id.repDetailNextElectionTextView) TextView mRepNextElectionTextView;
 
     @Bind(R.id.saveRepButton) Button mSaveRepButton;
     @Bind(R.id.votesRecyclerView) RecyclerView mVotesRecyclerView;
-    @Bind(R.id.detailScrollView) ScrollView mScrollView;
+    //@Bind(R.id.detailScrollView) ScrollView mScrollView;
 
     private Rep mRep;
     private ArrayList<Vote> mVotes = new ArrayList<>();
@@ -93,18 +86,19 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
         ButterKnife.bind(this, view);
 
         // top focus the ScrollView since size of Votes recycler view is large
-        mScrollView.fullScroll(ScrollView.FOCUS_UP);
+        //mScrollView.fullScroll(ScrollView.FOCUS_UP);
 
-        mRepNameTextView.setText("Name: " + mRep.getName());
-        mRepMemberIdTextView.setText("Member ID: " + mRep.getMemberId());
+        //mRepNameTextView.setText("Name: " + mRep.getName());
+        //mRepMemberIdTextView.setText("Member ID: " + mRep.getMemberId());
         mRepTitleTextView.setText("Title: " + mRep.getTitle());
         mRepPartyTextView.setText("Party: " + mRep.getParty());
         mRepStateTextView.setText("State: " + mRep.getState());
         mRepPhoneTextView.setText("Phone: " + mRep.getPhone());
         mRepWebsiteTextView.setText("Website: " + mRep.getWebsite());
-        mRepFacebookTextView.setText("Facebook Account: " + mRep.getFacebookAccount());
-        mRepTwitterTextView.setText("Twitter Handle: " + mRep.getTwitterHandle());
+        //mRepFacebookTextView.setText("Facebook Account: " + mRep.getFacebookAccount());
+        //mRepTwitterTextView.setText("Twitter Handle: " + mRep.getTwitterHandle());
         mRepMissedVotesTextView.setText("Percent of Missed Votes: " + mRep.getMissedVotes() + "%");
+        checkMissedVotesColor();
         mRepVotesWithPartyTextView.setText("Percent of Time Votes with Party: " + mRep.getVotesWithParty() + "%");
         mRepNextElectionTextView.setText("Next Election Year: " + mRep.getNextElection());
 
@@ -120,6 +114,12 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
         }
 
         return view;
+    }
+
+    public void checkMissedVotesColor() {
+        if (Float.parseFloat(mRep.getMissedVotes()) > 3 ) {
+            mRepMissedVotesTextView.setTextColor(Color.RED);
+        }
     }
 
     @Override
