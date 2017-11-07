@@ -6,10 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.pioneerx1.reptracker.ui.MainActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/congressImage"
+        android:src="@drawable/congresspic"
+        android:scaleType="center"
+        />
+
     <TextView
         android:layout_width="359dp"
         android:layout_height="36dp"
         android:text="Search by Chamber"
+        android:textColor="@color/colorPrimaryLight"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
