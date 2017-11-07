@@ -1,6 +1,7 @@
 package com.pioneerx1.reptracker.ui;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,10 +59,12 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
 
     @Bind(R.id.saveRepButton) Button mSaveRepButton;
     @Bind(R.id.votesRecyclerView) RecyclerView mVotesRecyclerView;
+    @Bind(R.id.detailScrollView) ScrollView mScrollView;
 
     private Rep mRep;
     private ArrayList<Vote> mVotes = new ArrayList<>();
     private VoteListAdapter mVoteAdapter;
+    private Context mContext;
 
 
     public static RepDetailFragment newInstance(Rep rep) {
@@ -83,6 +88,8 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_rep_detail, container, false);
         ButterKnife.bind(this, view);
+
+        mScrollView.fullScroll(ScrollView.FOCUS_UP);
 
         Log.d("DETAIL FRAGMENT", "---ON CREATE VIEW REACHED");
 
