@@ -1,3 +1,10 @@
+Tues 11/
+
+TO-DO:
+- Pretty up the Main Activity page buttons
+- Find an icon image for the RepTracker app
+
+---
 Sat, 10/28
 
 TO-DO:
