@@ -3,6 +3,7 @@ package com.pioneerx1.reptracker.ui;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -107,6 +108,9 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
         Intent intent = getActivity().getIntent();
         saveButtonOption = intent.getStringExtra("activity");
 
+        mRepPhoneTextView.setOnClickListener(this);
+        mRepWebsiteTextView.setOnClickListener(this);
+
         if (saveButtonOption.equals("new")) {
             mSaveRepButton.setOnClickListener(this);
         } else {
@@ -117,7 +121,7 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
     }
 
     public void checkMissedVotesColor() {
-        if (Float.parseFloat(mRep.getMissedVotes()) > 3 ) {
+        if (Float.parseFloat(mRep.getMissedVotes()) >= 3 ) {
             mRepMissedVotesTextView.setTextColor(Color.RED);
         }
     }
@@ -140,6 +144,14 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
             pushRef.setValue(mRep);
 
             Toast.makeText(getContext(), "Rep Saved", Toast.LENGTH_SHORT).show();
+        }
+        if (v == mRepPhoneTextView) {
+            Intent phoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mRep.getPhone()));
+            startActivity(phoneIntent);
+        }
+        if (v == mRepWebsiteTextView) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mRep.getWebsite()));
+            startActivity(webIntent);
         }
     }
 
