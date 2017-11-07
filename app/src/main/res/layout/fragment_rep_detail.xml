@@ -6,6 +6,7 @@
     android:id="@+id/detailScrollView"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
+    android:forceHasOverlappingRendering="true"
     tools:context="com.pioneerx1.reptracker.ui.RepDetailFragment">
 
     <!-- TODO: Update blank fragment layout -->

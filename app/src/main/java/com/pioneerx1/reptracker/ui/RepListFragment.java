@@ -37,8 +37,6 @@ public class RepListFragment extends Fragment {
     private ProgressDialog mRetrieveProgressDialog;
     String congressChamber = "not specified";
 
-
-
     public RepListFragment() {
         // Required empty public constructor
     }

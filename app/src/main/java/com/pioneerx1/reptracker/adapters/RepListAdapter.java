@@ -68,6 +68,7 @@ public class RepListAdapter extends RecyclerView.Adapter<RepListAdapter.RepViewH
             Intent intent = new Intent(mContext, RepDetailActivity.class);
             intent.putExtra("position", itemPosition);
             intent.putExtra("reps", Parcels.wrap(mReps));
+            intent.putExtra("activity", "new");
             mContext.startActivity(intent);
         }
 

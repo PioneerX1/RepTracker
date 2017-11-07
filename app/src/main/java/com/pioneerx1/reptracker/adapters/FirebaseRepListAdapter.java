@@ -84,6 +84,7 @@ public class FirebaseRepListAdapter extends FirebaseRecyclerAdapter<Rep, Firebas
                 Intent intent = new Intent(mContext, RepDetailActivity.class);
                 intent.putExtra("position", viewHolder.getAdapterPosition());
                 intent.putExtra("reps", Parcels.wrap(mReps));
+                intent.putExtra("activity", "saved");
                 mContext.startActivity(intent);
             }
         });

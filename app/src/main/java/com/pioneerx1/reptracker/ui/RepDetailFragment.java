@@ -2,6 +2,7 @@ package com.pioneerx1.reptracker.ui;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -64,7 +65,7 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
     private Rep mRep;
     private ArrayList<Vote> mVotes = new ArrayList<>();
     private VoteListAdapter mVoteAdapter;
-    private Context mContext;
+    private String saveButtonOption = "";
 
 
     public static RepDetailFragment newInstance(Rep rep) {
@@ -79,9 +80,7 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRep = Parcels.unwrap(getArguments().getParcelable("rep"));
-        Log.d("ON CREATE", mRep.getName());
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,12 +88,10 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
         View view = inflater.inflate(R.layout.fragment_rep_detail, container, false);
         ButterKnife.bind(this, view);
 
+        // top focus the ScrollView since size of Votes recycler view is large
         mScrollView.fullScroll(ScrollView.FOCUS_UP);
 
-        Log.d("DETAIL FRAGMENT", "---ON CREATE VIEW REACHED");
-
         mRepNameTextView.setText("Name: " + mRep.getName());
-        Log.d("REP NAME: ", mRep.getName());
         mRepMemberIdTextView.setText("Member ID: " + mRep.getMemberId());
         mRepTitleTextView.setText("Title: " + mRep.getTitle());
         mRepPartyTextView.setText("Party: " + mRep.getParty());
@@ -107,13 +104,16 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
         mRepVotesWithPartyTextView.setText("Percent of Time Votes with Party: " + mRep.getVotesWithParty() + "%");
         mRepNextElectionTextView.setText("Next Election Year: " + mRep.getNextElection());
 
-        //Log.d("--REP FACEBOOK: ", mRep.getFacebookAccount());
-
         getVotes(mRep.getMemberId());
 
-        // on click listeners
-        mSaveRepButton.setOnClickListener(this);
+        Intent intent = getActivity().getIntent();
+        saveButtonOption = intent.getStringExtra("activity");
 
+        if (saveButtonOption.equals("new")) {
+            mSaveRepButton.setOnClickListener(this);
+        } else {
+            mSaveRepButton.setVisibility(View.GONE);
+        }
         return view;
     }
 
@@ -139,6 +139,7 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
     }
 
     private void getVotes(String memberId) {
+
         final ProPublicaService propublicaService = new ProPublicaService();
         propublicaService.findVotes(memberId, new Callback() {
             @Override
@@ -149,7 +150,6 @@ public class RepDetailFragment extends Fragment implements View.OnClickListener 
             public void onResponse(Call call, Response response) throws IOException {
                 mVotes = propublicaService.processVoteResults(response);
                 String count = mVotes.size() + "";
-                Log.d("VOTES COUNT " + mRep.getName(), count);
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override

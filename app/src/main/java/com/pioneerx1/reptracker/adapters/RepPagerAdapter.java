@@ -4,11 +4,15 @@ package com.pioneerx1.reptracker.adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.widget.ScrollView;
 
+import com.pioneerx1.reptracker.R;
 import com.pioneerx1.reptracker.models.Rep;
 import com.pioneerx1.reptracker.ui.RepDetailFragment;
 
 import java.util.ArrayList;
+
+import butterknife.Bind;
 
 public class RepPagerAdapter extends FragmentPagerAdapter {
 
