@@ -1,4 +1,4 @@
-Tues 11/
+Tues 11/7
 
 TO-DO:
 - Pretty up the Main Activity page buttons

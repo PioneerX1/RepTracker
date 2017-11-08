@@ -75,7 +75,7 @@ public class RepListAdapter extends RecyclerView.Adapter<RepListAdapter.RepViewH
         public void bindRep(Rep rep) {
             mRepNameTextView.setText(rep.getName());
             mRepTitleTextView.setText(rep.getTitle());
-            mRepStateTextView.setText(rep.getState());
+            mRepStateTextView.setText(rep.getState() + "  /  " + rep.getParty());
         }
     }
 

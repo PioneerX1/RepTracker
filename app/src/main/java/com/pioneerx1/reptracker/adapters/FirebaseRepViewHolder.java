@@ -55,7 +55,7 @@ public class FirebaseRepViewHolder extends RecyclerView.ViewHolder implements Vi
 
         repNameTextView.setText(rep.getName());
         repTitleTextView.setText(rep.getTitle());
-        repStateTextView.setText(rep.getState());
+        repStateTextView.setText(rep.getState() + "  /  " + rep.getParty());
     }
 
     @Override
