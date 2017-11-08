@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,9 +24,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    @Bind(R.id.searchHouseButton) Button mSearchHouseButton;
-    @Bind(R.id.searchSenateButton) Button mSearchSenateButton;
+    //@Bind(R.id.searchHouseButton) Button mSearchHouseButton;
+    //@Bind(R.id.searchSenateButton) Button mSearchSenateButton;
     @Bind(R.id.savedRepsListButton) Button mSavedRepsListButton;
+    @Bind(R.id.houseImage) ImageView mHouseImage;
+    @Bind(R.id.senateImage) ImageView mSenateImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +50,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
 
-        mSearchHouseButton.setOnClickListener(this);
-        mSearchSenateButton.setOnClickListener(this);
+        //mSearchHouseButton.setOnClickListener(this);
+        //mSearchSenateButton.setOnClickListener(this);
+        mHouseImage.setOnClickListener(this);
+        mSenateImage.setOnClickListener(this);
         mSavedRepsListButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == mSearchHouseButton) {
+        if (v == mHouseImage) {
             Intent intent = new Intent(this, SearchCongressActivity.class);
             intent.putExtra("chamber", "house");
             startActivity(intent);
         }
-        if (v == mSearchSenateButton) {
+        if (v == mSenateImage) {
             Intent intent = new Intent(this, SearchCongressActivity.class);
             intent.putExtra("chamber", "senate");
             startActivity(intent);
